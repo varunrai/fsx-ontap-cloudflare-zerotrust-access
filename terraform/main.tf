@@ -52,21 +52,14 @@ provider "aws" {
   }
 }
 
-provider "cloudflare" {
-  api_token = var.cloudflare_token
-}
+module "fsxontap" {
+  source = "./modules/fsxn"
 
-data "cloudflare_tunnel" "aws" {
-  account_id = var.cloudflare_account_id
-  name       = "AWS Work VPC - Singapore"
-}
+  fsxn_password           = var.fsxn_password
+  fsxn_deployment_type    = "SINGLE_AZ_1"
+  fsxn_subnet_ids         = [aws_subnet.private_subnet[0].id, aws_subnet.private_subnet[1].id]
+  fsxn_security_group_ids = [aws_security_group.sg-fsx.id]
+  fsxn_volume_name_prefix = "demo"
 
-data "http" "cloudflare-tunnel-token" {
-  url = "https://api.cloudflare.com/client/v4/accounts/${var.cloudflare_account_id}/cfd_tunnel/${data.cloudflare_tunnel.aws.id}/token"
-
-  # Optional request headers
-  request_headers = {
-    Content-Type  = "application/json",
-    Authorization = "Bearer ${var.cloudflare_token}"
-  }
+  creator_tag = var.creator_tag
 }
