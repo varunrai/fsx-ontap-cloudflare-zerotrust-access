@@ -28,19 +28,21 @@ In addition to setting up the tunnel, you also need to define the access policie
 
 To further enhance security, you can also install the Cloudflare Warp client on your system. This allows you to connect to the tunnel directly from your system, providing an additional layer of security. The installation process involves downloading the appropriate version of the client for your operating system, installing it, and then configuring it to connect to the tunnel.
 
-Another crucial aspect of setting up Cloudflare Zero Trust is installing it on Amazon EC2. This involves launching an Amazon EC2 instance, connecting to it via SSH, and then downloading and installing the Cloudflare Tunnel. Once the tunnel is installed, it can be authenticated, configured, and started, providing a secure connection between your EC2 instance and your Amazon FSx for NetApp ONTAP system.
+Another crucial aspect of setting up Cloudflare Zero Trust is installing it on Amazon EC2. This involves launching an Amazon EC2 instance, downloading and installing the Cloudflare Tunnel. Once the tunnel is installed, configured, and started, providing a secure connection between your EC2 instance and your Amazon FSx for NetApp ONTAP file system.
 
 ## Prerequisites
 
 1. [Terraform prerequisites](#terraform)
-2. [AWS prerequisites](#aws-account-setup)
+2. [Cloudflare prerequisites](#cloudflare)
+3. [AWS prerequisites](#aws-account-setup)
 
 ### Terraform
 
-| Name                                                                     | Version  |
-| ------------------------------------------------------------------------ | -------- |
-| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 1.6.6 |
-| <a name="requirement_aws"></a> [aws](#requirement_aws)                   | >= 5.25  |
+| Name                | Version  |
+| ------------------- | -------- |
+| Terraform           | >= 1.5.7 |
+| AWS Provider        | >= 5.38  |
+| Cloudflare Provider | >= 4.90  |
 
 ### Cloudflare
 
@@ -145,7 +147,7 @@ You can see that Terraform recognizes the modules required by our configuration:
   ```
 
 > [!IMPORTANT]
-> **Make sure to replace the values with ones that match your AWS and Cloudflare environment and needs.**
+> Make sure to replace the values with ones that match your **AWS and Cloudflare environment and needs.**
 
 #### 5. Create a Terraform plan
 
