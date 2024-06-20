@@ -10,13 +10,15 @@ This document describes the steps to configure a new cloudflare account ready fo
 
 ##### **First Time Setup:** For the first time setup create a team name which will be used later on for access from the client.
 
-> ![NOTE] If this is the first time you are creating the cloudflare account it will ask you for the billing information which can be set to the Free plan for non-production use.
+> [!IMPORTANT]
+> If this is the first time you are creating the cloudflare account it will ask you for the billing information which can be set to the Free plan for non-production use.
 
-> ![NOTE] This name can be updated later on if required
+> [!NOTE]
+> This name can be updated later on if required
 
 ![AccountSetup](./images/cf-setup/Setup-2.png)
 
-##### **Setup Tunnel Configuration** Create a Tunnel with the connector Cloudflared.
+##### **Setup Tunnel Configuration** ([Cloudflare Docs](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/get-started/create-remote-tunnel/)) Create a Tunnel with the connector Cloudflared.
 
 ![AccountSetup](./images/cf-setup/Setup-3.png)
 ![AccountSetup](./images/cf-setup/Setup-4.png)
@@ -30,6 +32,8 @@ This document describes the steps to configure a new cloudflare account ready fo
 ![AccountSetup](./images/cf-setup/Setup-6.png)
 
 ##### **Create the Private Network which should be the CIDR range of the VPC or the subnet in AWS that should be allowed access via the tunnel**
+
+> ![alt text](image.png) [More details here](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/private-net/cloudflared/)
 
 ![AccountSetup](./images/cf-setup/Setup-7.png)
 
@@ -57,7 +61,7 @@ This document describes the steps to configure a new cloudflare account ready fo
 
 ![API Setup](./images/cf-setup/API-5.png)
 
-### WARP Device Enrollment
+### WARP Device Enrollment ([Cloudflare Docs](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/device-enrollment/))
 
 ##### **Create a device enrollment profile** The device enrollment profile defines various measures to control which devices can access the tunnel. For the purpose of this setup, we can create a profile that will be filtered based on the country.
 
