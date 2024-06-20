@@ -144,7 +144,8 @@ You can see that Terraform recognizes the modules required by our configuration:
     cloudflare_tunnel_name = "<Cloudflare Tunnel Name>"
   ```
 
-> [!IMPORTANT] > **Make sure to replace the values with ones that match your AWS and Cloudflare environment and needs.**
+> [!IMPORTANT]
+> **Make sure to replace the values with ones that match your AWS and Cloudflare environment and needs.**
 
 #### 5. Create a Terraform plan
 
