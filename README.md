@@ -133,14 +133,15 @@ You can see that Terraform recognizes the modules required by our configuration:
   ***
 
   ```ini
-        creator_tag   = "<CREATOR TAG>"
-        aws_location  = "<AWS REGION>"
-        fsxn_password = "SuperSecretPassw0rd"
-        ec2_iam_role  = "<EC2 IAM Role>"
-        /* CloudFlare Variables */
-        cloudflare_account_id  = "<Cloudflare Account Id>"
-        cloudflare_token       = "<Cloudflare Access Token>"
-        cloudflare_tunnel_name = "<Tunnel Name>"
+    creator_tag          = "<CreatorTag>"
+    aws_location         = "<AWS Region>"
+    fsxn_password        = "P@ssw0rd@123"
+    ec2_iam_role         = "<EC2 IAM ROLE>"
+    ec2_instance_type    = "t3.small"
+    ec2_instance_keypair = "<EC2 Key Pair>"
+    /* CloudFlare Variables */
+    cloudflare_token       = "<Cloudflare API Token>"
+    cloudflare_tunnel_name = "<Cloudflare Tunnel Name>"
   ```
 
 > [!IMPORTANT]
@@ -163,3 +164,6 @@ Run the following command to execute the Terrafom code and apply the changes pro
 ```shell
 terraform apply
 ```
+
+#### 7. Validate Tunnel Health
+Access the tunnel health [as shown here](Cloudflare-Setup.md#validate-the-tunnel-status-this-validation-will-show-healthy-once-the-deployment-of-the-terraform-resources-has-been-completed)
