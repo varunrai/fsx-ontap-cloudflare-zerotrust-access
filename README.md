@@ -20,6 +20,8 @@ Zero Trust is fundamentally important for security in today's highly connected d
 
 ## Cloudflare Zero Trust
 
+![How It Works](./images/cf_tunnel_howitworks.webp)
+
 Setting up Cloudflare Zero Trust involves creating a secure tunnel, configuring access policies, and ensuring the secure connection is established. To do this, you first need to log into your Cloudflare account and navigate to the Zero Trust section. From there, you can create a new tunnel, enter the relevant details, and configure it to point towards your Amazon FSx for NetApp ONTAP system.
 
 In addition to setting up the tunnel, you also need to define the access policies that determine which users or groups can access your tunnel. These policies can include additional security measures, such as requiring multi-factor authentication. Once all the details have been entered and the policies set, you can save and start the tunnel. Your Cloudflare Zero Trust tunnel is now set up and ready to securely connect you to your SMB or NFS shares on your Amazon FSx for NetApp ONTAP system.
@@ -37,6 +39,14 @@ Another crucial aspect of setting up Cloudflare Zero Trust is installing it on A
 5. **Configure the tunnel:** Configure the tunnel to point towards your Amazon FSx for NetApp ONTAP system. You will need to enter the IP address and port number of your ONTAP system.
 6. **Set up access policies:** Define which users or groups can access your tunnel. You can also set up additional security measures such as requiring multi-factor authentication.
 7. **Save and start the tunnel:** Once you have entered all the details, click on "Save" and then "Start Tunnel". Your Cloudflare Zero Trust tunnel is now set up and ready to securely connect you to your SMB or NFS shares on your Amazon FSx for NetApp ONTAP system.
+
+### Setting up the Cloudflare WARP Client
+
+1. **Download the Cloudflare Warp client:** Visit the [Cloudflare Warp download page](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/download-warp/) and select the appropriate version for your operating system.
+2. **Install the client:** Run the downloaded file and follow the prompts to install the Cloudflare Warp client on your system.
+3. **Configure the client:** After installation, open the Cloudflare Warp client. You may be asked to log in with your Cloudflare account credentials.
+4. **Connect to the tunnel:** Select the tunnel you created from the list of available tunnels and click "Connect".
+5. **Verify the connection:** Once connected, you should see a status indicating that you are connected to your tunnel. You can now securely access your Amazon FSx for NetApp ONTAP system via the Cloudflare Warp client.
 
 ## Usage
 

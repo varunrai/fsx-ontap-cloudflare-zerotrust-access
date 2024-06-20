@@ -11,36 +11,21 @@ terraform {
       version = "~> 3.1.0"
     }
 
-    kubernetes = {
-      source  = "hashicorp/kubernetes"
-      version = ">=2.7.1"
-    }
-
     local = {
       source  = "hashicorp/local"
       version = "~> 2.1.0"
     }
-    null = {
-      source  = "hashicorp/null"
-      version = "~> 3.1.0"
-    }
-    cloudinit = {
-      source  = "hashicorp/cloudinit"
-      version = "~> 2.2.0"
-    }
-    netapp-cloudmanager = {
-      source  = "NetApp/netapp-cloudmanager"
-      version = "23.8.0"
-    }
-
     cloudflare = {
       source  = "cloudflare/cloudflare"
       version = ">= 4.9.0"
     }
-
+    http = {
+      source  = "hashicorp/http"
+      version = "3.4.3"
+    }
   }
 
-  required_version = ">= 0.14.9"
+  required_version = ">= 1.5.7"
 }
 
 provider "aws" {
@@ -53,6 +38,7 @@ provider "aws" {
 }
 
 module "fsxontap" {
+  count  = 0
   source = "./modules/fsxn"
 
   fsxn_password           = var.fsxn_password

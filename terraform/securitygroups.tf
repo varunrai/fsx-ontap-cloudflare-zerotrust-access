@@ -69,34 +69,3 @@ resource "aws_security_group_rule" "VPCToFSXRule" {
   source_security_group_id = aws_security_group.sg-fsx.id
   security_group_id        = aws_vpc.vpc.default_security_group_id
 }
-
-resource "aws_security_group" "sg-AllowRemoteToEC2" {
-  name        = "AllowRemoteToEC2"
-  description = "Allow access to RDP/SSH to EC2"
-  vpc_id      = aws_vpc.vpc.id
-
-  dynamic "ingress" {
-    for_each = var.ec2_security_group_config
-    content {
-      description      = ingress.value["description"]
-      from_port        = ingress.value["port"]
-      to_port          = ingress.value["port"]
-      protocol         = ingress.value["protocol"]
-      cidr_blocks      = ingress.value["cidr_blocks"]
-      ipv6_cidr_blocks = ingress.value["ipv6_cidr_blocks"]
-    }
-  }
-
-  egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-
-  tags = {
-    Name    = "${var.creator_tag}-AllowRemoteToEC2"
-    creator = var.creator_tag
-  }
-}
