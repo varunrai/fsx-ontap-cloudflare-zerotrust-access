@@ -144,8 +144,7 @@ You can see that Terraform recognizes the modules required by our configuration:
     cloudflare_tunnel_name = "<Cloudflare Tunnel Name>"
   ```
 
-> [!IMPORTANT]
-> **Make sure to replace the values with ones that match your AWS and Cloudflare environment and needs.**
+> [!IMPORTANT] > **Make sure to replace the values with ones that match your AWS and Cloudflare environment and needs.**
 
 #### 5. Create a Terraform plan
 
@@ -166,4 +165,5 @@ terraform apply
 ```
 
 #### 7. Validate Tunnel Health
-Access the tunnel health [as shown here](Cloudflare-Setup.md#validate-the-tunnel-status-this-validation-will-show-healthy-once-the-deployment-of-the-terraform-resources-has-been-completed)
+
+Access the tunnel health [as shown here](https://github.com/varunrai/fsx-ontap-cloudflare-zerotrust-access/blob/initial-commit/Cloudflare-Setup.md#validate-the-tunnel-status-this-validation-will-show-healthy-once-the-deployment-of-the-terraform-resources-has-been-completed)
