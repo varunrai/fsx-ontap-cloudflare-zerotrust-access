@@ -38,14 +38,16 @@ provider "aws" {
 }
 
 module "fsxontap" {
-  count  = 0
   source = "./modules/fsxn"
 
-  fsxn_password           = var.fsxn_password
-  fsxn_deployment_type    = "SINGLE_AZ_1"
-  fsxn_subnet_ids         = [aws_subnet.private_subnet[0].id, aws_subnet.private_subnet[1].id]
-  fsxn_security_group_ids = [aws_security_group.sg-fsx.id]
-  fsxn_volume_name_prefix = "demo"
+  fsxn_password              = var.fsxn_password
+  fsxn_ssd_in_gb             = 1024
+  fsxn_throughput_capacity   = 128
+  fsxn_deployment_type       = "SINGLE_AZ_1"
+  fsxn_subnet_ids            = [aws_subnet.private_subnet[0].id, aws_subnet.private_subnet[1].id]
+  fsxn_security_group_ids    = [aws_security_group.sg-fsx.id]
+  fsxn_volume_name_prefix    = "demo"
+  fsxn_volume_security_style = "UNIX"
 
   creator_tag = var.creator_tag
 }

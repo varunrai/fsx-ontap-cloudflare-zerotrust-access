@@ -11,7 +11,7 @@ resource "aws_fsx_ontap_file_system" "fsx_ontap_fs" {
   security_group_ids  = var.fsxn_security_group_ids
 
   tags = {
-    "Name" = "${var.creator_tag}-FSxN-SQL-Demo"
+    "Name" = "${var.creator_tag}-FSxN-Demo"
   }
 }
 

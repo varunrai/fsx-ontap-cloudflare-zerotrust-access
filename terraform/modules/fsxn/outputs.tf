@@ -18,12 +18,13 @@ output "fsx_svm_iscsi_endpoints" {
   value       = aws_fsx_ontap_storage_virtual_machine.fsxsvm01.endpoints[0].iscsi[0].ip_addresses
 }
 
-output "fsx_sql_data_volume" {
-  description = "FSxN SQL Data Volume"
-  value       = aws_fsx_ontap_volume.fsxn_sql_data_volume
+
+output "fsx_svm_nfs_endpoints" {
+  description = "FSxN SVM iSCSI endpoints"
+  value       = aws_fsx_ontap_storage_virtual_machine.fsxsvm01.endpoints[0].nfs[0].ip_addresses
 }
 
-output "fsx_sql_log_volume" {
-  description = "FSxN SQL Log Volume"
-  value       = aws_fsx_ontap_volume.fsxn_sql_log_volume
+output "fsx_data_volume" {
+  description = "FSxN Data Volume"
+  value       = aws_fsx_ontap_volume.fsxn_data_volume
 }

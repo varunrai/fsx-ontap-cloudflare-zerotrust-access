@@ -89,30 +89,3 @@ resource "aws_instance" "ec2-cloudflare-tunnel" {
     Name = "${var.creator_tag}-${var.environment}-cf-tunnel"
   }
 }
-
-resource "aws_instance" "ec2-cloudflare-js" {
-  ami           = data.aws_ami.ubuntu-server-2204.id
-  instance_type = var.ec2_instance_type
-  monitoring    = false
-
-  vpc_security_group_ids = [aws_security_group.sg-fsx.id]
-  subnet_id              = aws_subnet.public_subnet[0].id
-  key_name               = var.ec2_instance_keypair
-  iam_instance_profile   = var.ec2_iam_role
-
-
-  root_block_device {
-    volume_type = "gp2"
-    volume_size = 30
-    tags = {
-      "creator" = "${var.creator_tag}"
-    }
-  }
-
-  depends_on = [
-
-  ]
-  tags = {
-    Name = "${var.creator_tag}-${var.environment}-jump"
-  }
-}
