@@ -2,7 +2,7 @@
 
 This document describes the steps to configure a new cloudflare account ready for zero trust access
 
-### Setting up Cloudflare Account for Access
+### Setting Up Cloudflare Zero Trust Tunnel
 
 ##### **Login to your Cloudflare account:** Navigate to Zero Trust
 
@@ -33,11 +33,11 @@ This document describes the steps to configure a new cloudflare account ready fo
 
 ##### **Create the Private Network which should be the CIDR range of the VPC or the subnet in AWS that should be allowed access via the tunnel**
 
-> ![alt text](image.png) [More details here](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/private-net/cloudflared/)
-
 ![AccountSetup](./images/cf-setup/Setup-7.png)
 
-### API Key Setup
+> ![alt text](image.png) [More details here](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/private-net/cloudflared/)
+
+### API Key Setup ([Cloudflare Docs](https://developers.cloudflare.com/cloudflare-one/api-terraform/scoped-api-tokens/))
 
 ##### **Access the My Profile from the top menu**
 
@@ -91,16 +91,32 @@ This document describes the steps to configure a new cloudflare account ready fo
 
 ![Enrollment](./images/cf-setup/WARP-4.png)
 
-### Client Setup
+### Client Setup ([Cloudflare Docs](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/manual-deployment/))
+
+> [!IMPORTANT]
+> The connection from client to ZeroTrust can be configured prior to the deployment on tunnel on AWS
+> However, once the tunnel is deployed and running, the client should be reconnected to refresh the route tables
+
+##### **Access the WARP Client**
 
 ![ClientSetup](./images/cf-setup/Client-1.png)
 
+##### **Launch Preferences to Login to Cloudflare Zero Trust**
+
 ![ClientSetup](./images/cf-setup/Client-2.png)
+
+##### **Enter the team name created in [account setup steps](#enter-the-team-name-created-in-account-setup-steps-here)**
 
 ![ClientSetup](./images/cf-setup/Client-3.png)
 
+##### **Provide an email address which will receive the one-time pin for access**
+
 ![ClientSetup](./images/cf-setup/Client-4.png)
 
+##### **Successful login should re-launch the WARP client with the label shown as "Zero Trust"**
+
 ![ClientSetup](./images/cf-setup/Client-5.png)
+
+#### **Connect to gain access into the private network**
 
 ![ClientSetup](./images/cf-setup/Client-6.png)

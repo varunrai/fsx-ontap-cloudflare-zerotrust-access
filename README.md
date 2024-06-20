@@ -22,7 +22,7 @@ Zero Trust is fundamentally important for security in today's highly connected d
 
 ![How It Works](./images/cf_tunnel_howitworks.webp)
 
-Setting up Cloudflare Zero Trust involves creating a secure tunnel, configuring access policies, and ensuring the secure connection is established. To do this, you first need to log into your Cloudflare account and navigate to the Zero Trust section. From there, you can create a new tunnel, enter the relevant details, and configure it to point towards your Amazon FSx for NetApp ONTAP system.
+Setting up Cloudflare Zero Trust involves creating a secure tunnel, configuring access policies, and ensuring the secure connection is established. To do this, you first need to log into your Cloudflare account and navigate to the Zero Trust section. From there, you can create a new tunnel, enter the relevant details, and configure it to point towards your Amazon FSx for NetApp ONTAP subnet CIDR range or the whole VPC CIDR range.
 
 In addition to setting up the tunnel, you also need to define the access policies that determine which users or groups can access your tunnel. These policies can include additional security measures, such as requiring multi-factor authentication. Once all the details have been entered and the policies set, you can save and start the tunnel. Your Cloudflare Zero Trust tunnel is now set up and ready to securely connect you to your SMB or NFS shares on your Amazon FSx for NetApp ONTAP system.
 
@@ -30,23 +30,38 @@ To further enhance security, you can also install the Cloudflare Warp client on 
 
 Another crucial aspect of setting up Cloudflare Zero Trust is installing it on Amazon EC2. This involves launching an Amazon EC2 instance, connecting to it via SSH, and then downloading and installing the Cloudflare Tunnel. Once the tunnel is installed, it can be authenticated, configured, and started, providing a secure connection between your EC2 instance and your Amazon FSx for NetApp ONTAP system.
 
-### Setting Up Cloudflare Zero Trust Tunnel
+## Prerequisites
 
-1. **Login to your Cloudflare account:** Open your web browser and visit the Cloudflare login page. Enter your credentials and sign in.
-2. **Navigate to the Zero Trust section:** Once you are logged into your account, look for the "Zero Trust" section in the dashboard.
-3. **Create a new tunnel:** In the Zero Trust section, click on "Tunnels" and then click on "Create New Tunnel".
-4. **Enter tunnel details:** You will be asked to provide a name for your tunnel and select the desired protocols (SMB or NFS in this case).
-5. **Configure the tunnel:** Configure the tunnel to point towards your Amazon FSx for NetApp ONTAP system. You will need to enter the IP address and port number of your ONTAP system.
-6. **Set up access policies:** Define which users or groups can access your tunnel. You can also set up additional security measures such as requiring multi-factor authentication.
-7. **Save and start the tunnel:** Once you have entered all the details, click on "Save" and then "Start Tunnel". Your Cloudflare Zero Trust tunnel is now set up and ready to securely connect you to your SMB or NFS shares on your Amazon FSx for NetApp ONTAP system.
+1. [Terraform prerequisites](#terraform)
+2. [AWS prerequisites](#aws-account-setup)
 
-### Setting up the Cloudflare WARP Client
+### Terraform
 
-1. **Download the Cloudflare Warp client:** Visit the [Cloudflare Warp download page](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/download-warp/) and select the appropriate version for your operating system.
-2. **Install the client:** Run the downloaded file and follow the prompts to install the Cloudflare Warp client on your system.
-3. **Configure the client:** After installation, open the Cloudflare Warp client. You may be asked to log in with your Cloudflare account credentials.
-4. **Connect to the tunnel:** Select the tunnel you created from the list of available tunnels and click "Connect".
-5. **Verify the connection:** Once connected, you should see a status indicating that you are connected to your tunnel. You can now securely access your Amazon FSx for NetApp ONTAP system via the Cloudflare Warp client.
+| Name                                                                     | Version  |
+| ------------------------------------------------------------------------ | -------- |
+| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 1.6.6 |
+| <a name="requirement_aws"></a> [aws](#requirement_aws)                   | >= 5.25  |
+
+### Cloudflare
+
+Refer to the documentation for [Cloudflare account and tunnel setup](Cloudflare-Setup.md)
+
+### AWS Account Setup
+
+- You must have an AWS Account with necessary permissions to create and manage resources
+- Configure your AWS Credentials on the server running this Terraform module. This can be derived from several sources, which are applied in the following order:
+
+  1. Parameters in the provider configuration
+  2. Environment variables
+  3. Shared credentials files
+  4. Shared configuration files
+  5. Container credentials
+  6. Instance profile credentials and Region
+
+  This order matches the precedence used by the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-precedence) and the [AWS SDKs](https://aws.amazon.com/tools/).
+
+> [!NOTE]
+> In this sample, the AWS Credentials were configured through [AWS CLI](https://aws.amazon.com/cli/), which adds them to a shared configuration file (option 4 above). Therefore, this documentation only provides guidance on setting-up the AWS credentials with shared configuration file using AWS CLI.
 
 ## Usage
 
@@ -80,10 +95,16 @@ Initializing the backend...
 Initializing modules...
 
 Initializing provider plugins...
-- Reusing previous version of hashicorp/local from the dependency lock file
+- Reusing previous version of cloudflare/cloudflare from the dependency lock file
+- Reusing previous version of hashicorp/http from the dependency lock file
 - Reusing previous version of hashicorp/aws from the dependency lock file
-- Using previously-installed hashicorp/local v2.5.1
-- Using previously-installed hashicorp/aws v5.25.0
+- Reusing previous version of hashicorp/random from the dependency lock file
+- Reusing previous version of hashicorp/local from the dependency lock file
+- Using previously-installed hashicorp/local v2.1.0
+- Using previously-installed cloudflare/cloudflare v4.35.0
+- Using previously-installed hashicorp/http v3.4.3
+- Using previously-installed hashicorp/aws v5.54.1
+- Using previously-installed hashicorp/random v3.1.3
 
 Terraform has been successfully initialized!
 
@@ -122,7 +143,8 @@ You can see that Terraform recognizes the modules required by our configuration:
         cloudflare_tunnel_name = "<Tunnel Name>"
   ```
 
-> [!IMPORTANT] > **Make sure to replace the values with ones that match your AWS and Cloudflare environment and needs.**
+> [!IMPORTANT]
+> **Make sure to replace the values with ones that match your AWS and Cloudflare environment and needs.**
 
 #### 5. Create a Terraform plan
 
