@@ -166,4 +166,6 @@ terraform apply
 
 #### 7. Validate Tunnel Health
 
-Access the tunnel health [as shown here](https://github.com/varunrai/fsx-ontap-cloudflare-zerotrust-access/blob/initial-commit/Cloudflare-Setup.md#validate-the-tunnel-status-this-validation-will-show-healthy-once-the-deployment-of-the-terraform-resources-has-been-completed)
+> This validation will show "Healthy" once the deployment of the terraform resources has been completed
+
+![Enrollment](./images/cf-setup/WARP-4.png)
