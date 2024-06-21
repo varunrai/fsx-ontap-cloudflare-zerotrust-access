@@ -35,7 +35,8 @@ This document describes the steps to configure a new cloudflare account ready fo
 
 ![AccountSetup](./images/cf-setup/Setup-7.png)
 
-> ![alt text](image.png) [More details here](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/private-net/cloudflared/)
+> ![alt text](./images/cf-setup/image.png) 
+> [More details here](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/private-net/cloudflared/)
 
 ### API Key Setup ([Cloudflare Docs](https://developers.cloudflare.com/cloudflare-one/api-terraform/scoped-api-tokens/))
 
